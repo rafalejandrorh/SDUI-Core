@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Stac\Action;
+namespace Sdui\Core\Action;
 
 final class NetworkResult implements \JsonSerializable
 {

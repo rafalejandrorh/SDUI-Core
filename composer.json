@@ -11,12 +11,12 @@
     },
     "autoload": {
         "psr-4": {
-            "Stac\\": "src/"
+            "Sdui\\Core\\": "src/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "Stac\\Tests\\": "tests/"
+            "Sdui\\Core\\Tests\\": "tests/"
         }
     },
     "scripts": {

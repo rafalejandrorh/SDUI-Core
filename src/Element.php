@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Stac;
+namespace Sdui\Core;
 
 abstract class Element implements \JsonSerializable
 {

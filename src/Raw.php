@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Stac;
+namespace Sdui\Core;
 
 /**
  * Escape hatch for widget or action JSON that has no typed builder yet.

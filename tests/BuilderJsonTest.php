@@ -2,21 +2,21 @@
 
 declare(strict_types=1);
 
-namespace Stac\Tests;
+namespace Sdui\Core\Tests;
 
 use PHPUnit\Framework\TestCase;
-use Stac\Action\GetFormValue;
-use Stac\Action\Multi;
-use Stac\Action\NetworkRequest;
-use Stac\Action\NetworkResult;
-use Stac\Action\None;
-use Stac\Action\ShowSnackBar;
-use Stac\Raw;
-use Stac\Widget\CheckBox;
-use Stac\Widget\DropdownMenu;
-use Stac\Widget\DropdownMenuEntry;
-use Stac\Widget\Image;
-use Stac\Widget\Text;
+use Sdui\Core\Action\GetFormValue;
+use Sdui\Core\Action\Multi;
+use Sdui\Core\Action\NetworkRequest;
+use Sdui\Core\Action\NetworkResult;
+use Sdui\Core\Action\None;
+use Sdui\Core\Action\ShowSnackBar;
+use Sdui\Core\Raw;
+use Sdui\Core\Widget\CheckBox;
+use Sdui\Core\Widget\DropdownMenu;
+use Sdui\Core\Widget\DropdownMenuEntry;
+use Sdui\Core\Widget\Image;
+use Sdui\Core\Widget\Text;
 
 final class BuilderJsonTest extends TestCase
 {

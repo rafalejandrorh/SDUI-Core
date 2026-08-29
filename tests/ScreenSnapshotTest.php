@@ -2,27 +2,27 @@
 
 declare(strict_types=1);
 
-namespace Stac\Tests;
+namespace Sdui\Core\Tests;
 
 use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
-use Stac\Action\Navigate;
-use Stac\Action\SduiLogout;
-use Stac\Action\SduiNavigate;
-use Stac\Action\ShowDialog;
-use Stac\Action\ValidateForm;
-use Stac\Widget\AppBar;
-use Stac\Widget\Column;
-use Stac\Widget\FilledButton;
-use Stac\Widget\Form;
-use Stac\Widget\Icon;
-use Stac\Widget\IconButton;
-use Stac\Widget\Padding;
-use Stac\Widget\Scaffold;
-use Stac\Widget\SizedBox;
-use Stac\Widget\Text;
-use Stac\Widget\TextButton;
-use Stac\Widget\TextFormField;
+use Sdui\Core\Action\Navigate;
+use Sdui\Core\Action\SduiLogout;
+use Sdui\Core\Action\SduiNavigate;
+use Sdui\Core\Action\ShowDialog;
+use Sdui\Core\Action\ValidateForm;
+use Sdui\Core\Widget\AppBar;
+use Sdui\Core\Widget\Column;
+use Sdui\Core\Widget\FilledButton;
+use Sdui\Core\Widget\Form;
+use Sdui\Core\Widget\Icon;
+use Sdui\Core\Widget\IconButton;
+use Sdui\Core\Widget\Padding;
+use Sdui\Core\Widget\Scaffold;
+use Sdui\Core\Widget\SizedBox;
+use Sdui\Core\Widget\Text;
+use Sdui\Core\Widget\TextButton;
+use Sdui\Core\Widget\TextFormField;
 
 final class ScreenSnapshotTest extends TestCase
 {
@@ -86,7 +86,7 @@ final class ScreenSnapshotTest extends TestCase
                     ->leading(IconButton::make(Icon::make('arrow_back'), $back)),
             )
             ->body(
-                \Stac\Widget\Center::make(
+                \Sdui\Core\Widget\Center::make(
                     Column::make()
                         ->mainAxisSize('min')
                         ->children(

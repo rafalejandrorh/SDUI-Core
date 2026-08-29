@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Stac\Widget;
+namespace Sdui\Core\Widget;
 
 abstract class Button extends Widget
 {

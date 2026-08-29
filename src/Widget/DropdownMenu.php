@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Stac\Widget;
+namespace Sdui\Core\Widget;
 
 final class DropdownMenu extends Widget
 {
@@ -11,9 +11,19 @@ final class DropdownMenu extends Widget
         return 'dropdownMenu';
     }
 
-    public static function make(): self
+    public static function make(?string $id = null): self
     {
-        return new self();
+        $widget = new self();
+        if ($id !== null) {
+            $widget->id($id);
+        }
+
+        return $widget;
+    }
+
+    public function id(string $id): self
+    {
+        return $this->put('id', $id);
     }
 
     /** @param list<mixed> $entries */

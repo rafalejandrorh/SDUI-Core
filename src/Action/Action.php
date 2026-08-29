@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Stac\Action;
+namespace Sdui\Core\Action;
 
-use Stac\Element;
+use Sdui\Core\Element;
 
 abstract class Action extends Element
 {

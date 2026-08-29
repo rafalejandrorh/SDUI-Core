@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Stac\Widget;
+namespace Sdui\Core\Widget;
 
-use Stac\Element;
+use Sdui\Core\Element;
 
 abstract class Widget extends Element
 {

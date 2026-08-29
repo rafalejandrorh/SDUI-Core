@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Stac\Widget;
+namespace Sdui\Core\Widget;
 
 final class ListView extends Widget
 {
