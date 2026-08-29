@@ -1,6 +1,6 @@
 {
-    "name": "stac/stac-php",
-    "description": "PHP builders that emit Stac SDUI JSON (docs.stac.dev).",
+    "name": "sdui/core",
+    "description": "PHP builders that emit SDUI JSON (docs.sdui.dev).",
     "type": "library",
     "license": "MIT",
     "require": {
