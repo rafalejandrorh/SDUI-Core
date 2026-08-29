@@ -20,4 +20,5 @@ Framework adapters (not in this package): Laravel mapper in the host app; Symfon
 ```bash
 composer install
 composer test
+composer test:coverage
 ```
