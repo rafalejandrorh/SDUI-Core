@@ -1,24 +1,24 @@
-# stac-php
+# SDUI-Core
 
-PHP builders whose `json_encode` output matches [Stac JSON](https://docs.stac.dev). Framework-agnostic (`php ^8.2`).
+Builders fluentes en PHP (`sdui/core`, PHP `^8.2`, MIT) que emiten JSON [Stac](https://docs.stac.dev) / SDUI a través de `JsonSerializable`. Sin dependencias de runtime y sin acoplamiento a Laravel ni Symfony.
 
 ```php
 use Sdui\Core\Widget\Scaffold;
 use Sdui\Core\Widget\Text;
 
 echo json_encode(Scaffold::make()->body(Text::make('Hello')));
+// {"type":"scaffold","body":{"type":"text","data":"Hello"}}
 ```
 
-Widgets: `scaffold`, `appBar`, `column`, `row`, `padding`, `sizedBox`, `center`, `expanded`, `container`, `listView`, `text`, `image`, `icon`, `divider`, `elevatedButton`, `filledButton`, `textButton`, `iconButton`, `form`, `textFormField`, `checkBox`, `dropdownMenu`.
+Los adaptadores de framework no viven aquí: el mapeo Laravel está en la aplicación host; el de formularios Symfony está en [`sdui/symfony`](../SDUI-Symfony).
 
-Actions: `navigate`, `showDialog`, `showSnackBar`, `networkRequest` (+ `results` for 200/422/500), `validateForm`, `getFormValue`, `multiAction`, `sduiNavigate`, `sduiLogout`.
+## Documentación
 
-Use `Sdui\Core\Raw` for anything not covered yet.
-
-Framework adapters (not in this package): Laravel mapper in the host app; Symfony Forms in [`sdui/symfony`](../SDUI-Symfony).
-
-```bash
-composer install
-composer test
-composer test:coverage
-```
+| Documento | Contenido |
+|-----------|-----------|
+| [Objetivos](docs/objetivos.md) | Problema, metas, no-objetivos y ecosistema |
+| [Arquitectura](docs/arquitectura.md) | Jerarquía, serialización e inventario de widgets y acciones |
+| [Diseño](docs/diseno.md) | Patrones, convenciones y cómo extender el paquete |
+| [Tests](docs/tests.md) | Suite PHPUnit, cómo ejecutarla y cobertura |
+| [Instalación](docs/instalacion.md) | Requisitos y consumo vía Composer (VCS o path) |
+| [Uso](docs/uso.md) | Guía práctica: pantallas, layout, formularios y `Raw` |
