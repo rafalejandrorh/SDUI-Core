@@ -116,13 +116,17 @@ use Sdui\Core\Action\SduiReload;
 use Sdui\Core\Action\SduiShare;
 use Sdui\Core\Widget\BarChart;
 use Sdui\Core\Widget\BarChartBar;
+use Sdui\Core\Widget\BoundText;
 use Sdui\Core\Widget\RefreshIndicator;
 
 RefreshIndicator::make(Text::make('Tasas'), SduiReload::make());
 FilledButton::make(Text::make('Compartir'), SduiShare::make('Hoy: $ 12,00'));
 BarChart::make(BarChartBar::make('Comida', 42.5)->color('#1B6B4A'))
     ->emptyLabel('Sin movimientos');
+BoundText::make('convertResult')->placeholder('El resultado aparece aquí');
 ```
+
+`text.data` con `{{convertResult}}` solo se resuelve al parsear. `setValue` no vuelve a pintar ese texto. `boundText` escucha la clave y se actualiza.
 
 ## Formularios
 

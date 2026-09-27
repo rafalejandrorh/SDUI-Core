@@ -160,6 +160,7 @@ No hay namespace de “layouts”: el layout es el propio conjunto de widgets (`
 | `VerticalDivider` | `verticalDivider` | `width`, `thickness`, `color` |
 | `GridView` | `gridView` | `children`, `crossAxisCount`, `shrinkWrap` |
 | `BarChart` | `barChart` | `bars` (`BarChartBar`: `label`, `value`, `color?`), `emptyLabel`. Stac no lo pinta; el parser vive en Flutter-SDUI |
+| `BoundText` | `boundText` | `valueKey` (obligatorio), `placeholder`, `style`. Muestra un valor de `setValue`. Stac no repinta `text.data` con `{{clave}}` |
 
 `Button` es abstracta: no emite JSON propio; comparte setters entre `ElevatedButton`, `FilledButton`, `TextButton` y `OutlinedButton`.
 
