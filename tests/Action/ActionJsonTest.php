@@ -13,6 +13,8 @@ use Sdui\Core\Action\NetworkResult;
 use Sdui\Core\Action\None;
 use Sdui\Core\Action\SduiLogout;
 use Sdui\Core\Action\SduiNavigate;
+use Sdui\Core\Action\SduiReload;
+use Sdui\Core\Action\SduiShare;
 use Sdui\Core\Action\SetValue;
 use Sdui\Core\Action\SetValueEntry;
 use Sdui\Core\Action\ShowDialog;
@@ -259,6 +261,30 @@ final class ActionJsonTest extends TestCase
                 SetValue::make(SetValueEntry::make('convertResult', '{{response.formatted}}'))
                     ->action(None::make()),
             ),
+        );
+    }
+
+    public function test_sdui_share_emits_text(): void
+    {
+        $this->assertSame(
+            ['actionType' => 'sduiShare', 'text' => 'Hoy: $ 12,00'],
+            $this->encode(SduiShare::make('Hoy: $ 12,00')),
+        );
+    }
+
+    public function test_sdui_reload_omits_screen_when_null(): void
+    {
+        $json = $this->encode(SduiReload::make());
+
+        $this->assertSame(['actionType' => 'sduiReload'], $json);
+        $this->assertArrayNotHasKey('screen', $json);
+    }
+
+    public function test_sdui_reload_emits_named_screen(): void
+    {
+        $this->assertSame(
+            ['actionType' => 'sduiReload', 'screen' => 'movements'],
+            $this->encode(SduiReload::make('movements')),
         );
     }
 }

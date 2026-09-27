@@ -34,8 +34,11 @@ classDiagram
   Button <|-- OutlinedButton
   Action <|-- Navigate
   Action <|-- SduiNavigate
+  Action <|-- SduiShare
+  Action <|-- SduiReload
   Action <|-- ShowModalBottomSheet
   Action <|-- SetValue
+  Widget <|-- BarChart
 ```
 
 | Capa | Namespace | Discriminador JSON | Rol |
@@ -156,6 +159,7 @@ No hay namespace de “layouts”: el layout es el propio conjunto de widgets (`
 | `GestureDetector` | `gestureDetector` | `child`, `onTap` |
 | `VerticalDivider` | `verticalDivider` | `width`, `thickness`, `color` |
 | `GridView` | `gridView` | `children`, `crossAxisCount`, `shrinkWrap` |
+| `BarChart` | `barChart` | `bars` (`BarChartBar`: `label`, `value`, `color?`), `emptyLabel`. Stac no lo pinta; el parser vive en Flutter-SDUI |
 
 `Button` es abstracta: no emite JSON propio; comparte setters entre `ElevatedButton`, `FilledButton`, `TextButton` y `OutlinedButton`.
 
@@ -168,6 +172,8 @@ No hay namespace de “layouts”: el layout es el propio conjunto de widgets (`
 | `Navigate` | `navigate` | Navegación Stac; `pop()`, `routeName`, `widgetJson`, `request`, … |
 | `SduiNavigate` | `sduiNavigate` | Navegación de app: `{ screen, style? }` (`push` por defecto no se emite) |
 | `SduiLogout` | `sduiLogout` | Logout de la app |
+| `SduiShare` | `sduiShare` | Hoja del sistema para compartir un `text` ya formateado |
+| `SduiReload` | `sduiReload` | Recarga forzada de una pantalla. Sin `screen`, el cliente recarga la actual |
 | `ShowDialog` | `showDialog` | Modal; embebe un widget |
 | `ShowSnackBar` | `showSnackBar` | Toast; embebe `content` |
 | `NetworkRequest` | `networkRequest` | HTTP; `method`, `headers`, `body`, `results` |
@@ -190,6 +196,7 @@ No extienden `Element`. No llevan `type` ni `actionType`.
 | `TableRow` | `{ children }`. Stac 1.5 no le asigna `type` |
 | `TableColumnWidth` | `{ type, value }` con `type` `flexColumnWidth` o `fixedColumnWidth` |
 | `SetValueEntry` | `{ key, value }` |
+| `BarChartBar` | `{ label, value, color? }` |
 
 `TableColumnWidth.type` es la estrategia de ancho (`flexColumnWidth` o `fixedColumnWidth`), no el discriminador de un widget.
 

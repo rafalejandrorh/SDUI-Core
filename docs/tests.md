@@ -75,7 +75,11 @@ Contrato de `Element` y `Raw`:
 
 ### `Action/ActionJsonTest`
 
-Cada acción de `src/Action/`: `SduiNavigate` (omite `push`, emite otros estilos), `Navigate` mínimo/completo y `pop()`, `Multi` vacío vs lista + `sync(false)`, `ShowDialog`, `ShowSnackBar`, ramas de `ValidateForm`, `NetworkRequest` con query/headers, `None` / `GetFormValue` / `SduiLogout`.
+Cada acción de `src/Action/`: `SduiNavigate` (omite `push`, emite otros estilos), `Navigate` mínimo/completo y `pop()`, `Multi` vacío vs lista + `sync(false)`, `ShowDialog`, `ShowSnackBar`, ramas de `ValidateForm`, `NetworkRequest` con query/headers, `None` / `GetFormValue` / `SduiLogout`, `SduiShare`, `SduiReload` (omite `screen` cuando es null).
+
+### `Widget/ChartJsonTest`
+
+`BarChart` mínimo (sin `bars` ni `emptyLabel`) y payload con `BarChartBar` (`color` opcional, sin `type`).
 
 ### `Widget/ButtonJsonTest`
 

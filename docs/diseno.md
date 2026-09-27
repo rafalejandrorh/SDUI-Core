@@ -44,7 +44,7 @@ Usar `Raw` cuando el *objeto* no existe como clase; usar `extra()` cuando la cla
 
 ## Acciones de aplicación vs Stac
 
-`Navigate` es la acción stock de Stac (`navigationStyle`, `routeName`, `widgetJson`, …). `SduiNavigate` y `SduiLogout` son específicas de esta app: el cliente Flutter las interpreta fuera del set genérico de Stac.
+`Navigate` es la acción stock de Stac (`navigationStyle`, `routeName`, `widgetJson`, …). `SduiNavigate`, `SduiLogout`, `SduiShare` y `SduiReload` las interpreta el cliente Flutter fuera del set genérico de Stac. `BarChart` tampoco lo pinta Stac: el parser está en Flutter-SDUI.
 
 `SduiNavigate::make($screen)` omite `style` cuando vale `push`, para no ensuciar el JSON con el default.
 

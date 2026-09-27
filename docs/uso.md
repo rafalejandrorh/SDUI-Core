@@ -109,6 +109,21 @@ IconButton::make(Icon::make('arrow_back'), Navigate::pop());
 - `SduiNavigate::make('details')` emite `{ actionType: sduiNavigate, screen: details }`. El estilo por defecto `push` se omite; otros estilos (`replace`, `pop`) sí salen en JSON.
 - `Navigate::pop()` es la acción Stac stock `{ actionType: navigate, navigationStyle: pop }`.
 
+`SduiReload::make()` no emite `screen` (el cliente recarga la pantalla actual). `SduiReload::make('movements')` sí. `SduiShare::make($text)` comparte un texto ya formateado. `BarChart` no es un widget de Stac; el cliente lo pinta:
+
+```php
+use Sdui\Core\Action\SduiReload;
+use Sdui\Core\Action\SduiShare;
+use Sdui\Core\Widget\BarChart;
+use Sdui\Core\Widget\BarChartBar;
+use Sdui\Core\Widget\RefreshIndicator;
+
+RefreshIndicator::make(Text::make('Tasas'), SduiReload::make());
+FilledButton::make(Text::make('Compartir'), SduiShare::make('Hoy: $ 12,00'));
+BarChart::make(BarChartBar::make('Comida', 42.5)->color('#1B6B4A'))
+    ->emptyLabel('Sin movimientos');
+```
+
 ## Formularios
 
 Campos con `id` (lo usa `GetFormValue`), reglas Stac en `validatorRules`, y envío detrás de `ValidateForm`.
