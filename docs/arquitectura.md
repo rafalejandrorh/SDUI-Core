@@ -31,8 +31,11 @@ classDiagram
   Button <|-- ElevatedButton
   Button <|-- FilledButton
   Button <|-- TextButton
+  Button <|-- OutlinedButton
   Action <|-- Navigate
   Action <|-- SduiNavigate
+  Action <|-- ShowModalBottomSheet
+  Action <|-- SetValue
 ```
 
 | Capa | Namespace | Discriminador JSON | Rol |
@@ -126,8 +129,37 @@ No hay namespace de “layouts”: el layout es el propio conjunto de widgets (`
 | `TextFormField` | `textFormField` | `id`, `decoration`, `validatorRules`, `keyboardType`, `obscureText`, … |
 | `CheckBox` | `checkBox` | `id`, `value`, `tristate`, `onChanged`, `activeColor` |
 | `DropdownMenu` | `dropdownMenu` | `id`, `dropdownMenuEntries`, `initialSelection`, `label`, `hintText`, `width`, `enabled` |
+| `Card` | `card` | `child`, `color`, `elevation`, `margin` |
+| `ListTile` | `listTile` | `leading`, `title`, `subtitle`, `trailing`, `onTap` |
+| `RefreshIndicator` | `refreshIndicator` | `child` y `onRefresh` obligatorios |
+| `SingleChildScrollView` | `singleChildScrollView` | `child`, `padding` |
+| `FloatingActionButton` | `floatingActionButton` | `child`, `onPressed`, `tooltip` |
+| `NavigationBar` | `navigationBar` | `destinations` (obligatorio), `selectedIndex`. Se coloca en `Scaffold::bottomNavigationBar()` |
+| `Chip` | `chip` | `label` (widget, obligatorio), `backgroundColor` |
+| `SwitchWidget` | `switch` | `value`, `onChanged`. La clase no se llama `Switch` porque es palabra reservada de PHP. Stac 1.5 no tiene `id` |
+| `Radio` | `radio` | `value`, `onChanged`. Es la opción de un `radioGroup` |
+| `RadioGroup` | `radioGroup` | `id`, `groupValue`, `child`, `onChanged`. Las opciones son `radio` hijos, no una lista propia |
+| `CircularProgressIndicator` | `circularProgressIndicator` | sin setters |
+| `LinearProgressIndicator` | `linearProgressIndicator` | `value` |
+| `SafeArea` | `safeArea` | `child` |
+| `OutlinedButton` | `outlinedButton` | vía `Button`: `child`, `onPressed`, `onLongPress`, `style` |
+| `SelectableText` | `selectableText` | `data` (obligatorio), `style` |
+| `Table` | `table` | `children`, `columnWidths` |
+| `TableCell` | `tableCell` | `child`, `verticalAlignment` |
+| `Badge` | `badge` | `label` (widget), `child` |
+| `Spacer` | `spacer` | `flex` |
+| `Wrap` | `wrap` | `children`, `spacing`, `runSpacing` |
+| `Flexible` | `flexible` | `child` (obligatorio), `flex` |
+| `Align` | `align` | `child`, `alignment` |
+| `Stack` | `stack` | `children`, `alignment` |
+| `InkWell` | `inkWell` | `child`, `onTap` |
+| `GestureDetector` | `gestureDetector` | `child`, `onTap` |
+| `VerticalDivider` | `verticalDivider` | `width`, `thickness`, `color` |
+| `GridView` | `gridView` | `children`, `crossAxisCount`, `shrinkWrap` |
 
-`Button` es abstracta: no emite JSON propio; comparte setters entre los tres botones de texto.
+`Button` es abstracta: no emite JSON propio; comparte setters entre `ElevatedButton`, `FilledButton`, `TextButton` y `OutlinedButton`.
+
+`NavigationBar` no lleva una acción por destino. En Stac 1.5 `NavigationDestination` solo tiene `icon`, `label`, `selectedIcon`, `tooltip` y `enabled`. `BottomNavigationBarItem` tampoco tiene `onTap`: el parser solo cambia el índice de un `NavigationController`. Por eso el builder es `navigationBar` y el servidor fija `selectedIndex`. La navegación a otra pantalla nombrada sigue siendo un `sduiNavigate` en un control que sí acepta acción (`listTile`, botón, `inkWell`).
 
 ## Inventario de acciones
 
@@ -143,6 +175,8 @@ No hay namespace de “layouts”: el layout es el propio conjunto de widgets (`
 | `GetFormValue` | `getFormValue` | Lee el campo con `id` (típico en el `body` de un request) |
 | `Multi` | `multiAction` | Varias acciones; `sync` opcional |
 | `None` | `none` | No-op |
+| `ShowModalBottomSheet` | `showModalBottomSheet` | Sheet modal; embebe un widget. `isScrollControlled` |
+| `SetValue` | `setValue` | Escribe `values` (`{ key, value }`) y opcionalmente corre `action` |
 
 ## DTOs sin discriminator
 
@@ -152,6 +186,12 @@ No extienden `Element`. No llevan `type` ni `actionType`.
 |-------|------|
 | `NetworkResult` | `{ statusCode, action }` |
 | `DropdownMenuEntry` | `{ value, label, enabled?, leadingIcon?, trailingIcon? }` |
+| `NavigationDestination` | `{ icon, label, selectedIcon?, tooltip?, enabled? }` |
+| `TableRow` | `{ children }`. Stac 1.5 no le asigna `type` |
+| `TableColumnWidth` | `{ type, value }` con `type` `flexColumnWidth` o `fixedColumnWidth` |
+| `SetValueEntry` | `{ key, value }` |
+
+`TableColumnWidth.type` es la estrategia de ancho (`flexColumnWidth` o `fixedColumnWidth`), no el discriminador de un widget.
 
 ## Pantallas
 

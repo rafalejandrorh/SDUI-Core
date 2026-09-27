@@ -60,6 +60,33 @@ Column::make()->children([
 
 Otras piezas de layout: `Center`, `Expanded`, `Container`, `Row`, `ListView`, `Padding::all(8)` (emite `{left, top, right, bottom}`).
 
+Una fila de lista va dentro de una tarjeta:
+
+```php
+use Sdui\Core\Widget\Card;
+use Sdui\Core\Widget\ListTile;
+use Sdui\Core\Widget\Text;
+
+Card::make()->child(
+    ListTile::make()
+        ->title(Text::make('Comida'))
+        ->subtitle(Text::make('Bs. 100,00'))
+        ->trailing(Text::make('$ 2,00')),
+);
+```
+
+```json
+{
+  "type": "card",
+  "child": {
+    "type": "listTile",
+    "title": { "type": "text", "data": "Comida" },
+    "subtitle": { "type": "text", "data": "Bs. 100,00" },
+    "trailing": { "type": "text", "data": "$ 2,00" }
+  }
+}
+```
+
 ## Interacción
 
 Los botones (`FilledButton`, `ElevatedButton`, `TextButton`, `IconButton`) reciben el hijo y la acción `onPressed` en `make()`, o por setters.

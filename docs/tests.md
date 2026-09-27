@@ -36,9 +36,13 @@ tests/
 │   └── ActionJsonTest.php
 ├── Widget/
 │   ├── ButtonJsonTest.php
+│   ├── ChoiceJsonTest.php
+│   ├── CompositionTest.php
 │   ├── ContentJsonTest.php
 │   ├── FormJsonTest.php
-│   └── LayoutJsonTest.php
+│   ├── LayoutJsonTest.php
+│   ├── StructureJsonTest.php
+│   └── SurfaceJsonTest.php
 └── fixtures/
     ├── home.json
     ├── details.json

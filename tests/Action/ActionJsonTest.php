@@ -13,7 +13,10 @@ use Sdui\Core\Action\NetworkResult;
 use Sdui\Core\Action\None;
 use Sdui\Core\Action\SduiLogout;
 use Sdui\Core\Action\SduiNavigate;
+use Sdui\Core\Action\SetValue;
+use Sdui\Core\Action\SetValueEntry;
 use Sdui\Core\Action\ShowDialog;
+use Sdui\Core\Action\ShowModalBottomSheet;
 use Sdui\Core\Action\ShowSnackBar;
 use Sdui\Core\Action\ValidateForm;
 use Sdui\Core\Tests\Support\EncodesJson;
@@ -218,5 +221,44 @@ final class ActionJsonTest extends TestCase
             $this->encode(GetFormValue::make('email')),
         );
         $this->assertSame(['actionType' => 'sduiLogout'], $this->encode(SduiLogout::make()));
+    }
+
+    public function test_show_modal_bottom_sheet(): void
+    {
+        $this->assertSame(['actionType' => 'showModalBottomSheet'], $this->encode(ShowModalBottomSheet::make()));
+
+        $this->assertSame(
+            [
+                'actionType' => 'showModalBottomSheet',
+                'widget' => ['type' => 'text', 'data' => 'Alta'],
+                'isScrollControlled' => true,
+            ],
+            $this->encode(
+                ShowModalBottomSheet::make(Text::make('Alta'))->isScrollControlled(),
+            ),
+        );
+    }
+
+    public function test_set_value_entries_have_no_type(): void
+    {
+        $this->assertSame(['actionType' => 'setValue'], $this->encode(SetValue::make()));
+
+        $entry = $this->encode(SetValueEntry::make('convertResult', '{{response.formatted}}'));
+        $this->assertSame(['key' => 'convertResult', 'value' => '{{response.formatted}}'], $entry);
+        $this->assertArrayNotHasKey('type', $entry);
+
+        $this->assertSame(
+            [
+                'actionType' => 'setValue',
+                'values' => [
+                    ['key' => 'convertResult', 'value' => '{{response.formatted}}'],
+                ],
+                'action' => ['actionType' => 'none'],
+            ],
+            $this->encode(
+                SetValue::make(SetValueEntry::make('convertResult', '{{response.formatted}}'))
+                    ->action(None::make()),
+            ),
+        );
     }
 }
